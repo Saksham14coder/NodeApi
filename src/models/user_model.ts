@@ -7,5 +7,6 @@ export interface User{
     uid:string,
     image:string,
     follower : number,
-    following : number
+    following : number,
+    token : number
 }

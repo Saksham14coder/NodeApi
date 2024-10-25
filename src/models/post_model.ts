@@ -5,7 +5,7 @@ export interface Post{
     pTitle : string,
     pDescription : string,
     pImage : string,
-    createAt : number,
+    createAt : string,
     creatorId : string,
     favorite : boolean,
     link : {

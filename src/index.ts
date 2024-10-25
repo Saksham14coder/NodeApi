@@ -5,7 +5,7 @@ import appLogger from "./middleware/app_logger"
 import userRouter from "./router/user_router";
 import noteRouter from "./router/note_router";
 import postRouter from "./router/post_router";
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 8000;
  
 
 const app : Express.Application = Express();

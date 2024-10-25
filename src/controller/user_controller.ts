@@ -2,6 +2,9 @@ import { ObjectId } from "mongodb";
 import { getDatabase } from "../config/mongodb_client";
 import { User } from "../models/user_model";
 import Express from "express";
+
+import { SendVerifyEmail } from "../service/mailingServices";
+ 
  
 
 
@@ -29,6 +32,11 @@ export class UserController {
                 "response":"Email Already Exists"
             })
         }else{
+            const token = Math.floor(100000 + Math.random() * 900000);
+            user.token = token;
+            
+            
+
 
             const responseData = await userCollection.insertOne(user);
 
@@ -39,11 +47,15 @@ export class UserController {
              const userResponseData = userInfo[0];
 
              userResponseData.password = "";
+
+             
+             SendVerifyEmail(userResponseData.username, userResponseData.email, token);
              
              response.status(200).send({
                 "status":"success",
                 "response":userResponseData,
-             })
+                "message" : "Otp send successfully"
+             }) 
 
             
 

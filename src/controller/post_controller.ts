@@ -18,8 +18,10 @@ export class PostController{
 
          const post : Post=request.body 
 
-         const formattedDate = moment().format("MM/DD/YY HH:mm");
-         post.createAt = moment(formattedDate, "MM/DD/YY HH:mm").valueOf();
+         const currentDate = new Date();
+         const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear().toString().slice(-2)} ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
+         console.log(formattedDate);
+         post.createAt = formattedDate;
 
          const data = await postCollection.insertOne(post);
 
@@ -86,7 +88,6 @@ export class PostController{
         const updateNoteObject ={
             pTitle : post.pTitle,
             pDescription : post.pDescription,
-            createAt : post.createAt,
             favorite : post.favorite,
             link : {
                 link1 : post.link.link1,
