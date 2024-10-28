@@ -1,4 +1,4 @@
-const express = require('express');
+import Express from "express";
 import cors from 'cors';
 import {connectToDatabase} from "./config/mongodb_client"
 import appLogger from "./middleware/app_logger"
